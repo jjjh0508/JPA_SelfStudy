@@ -45,7 +45,7 @@ public class OrderTests {
         //given
         Product product = new Product();
         product.setProductName("갤럭시 폴드");
-        product.setProductPrice(2000000);
+        product.setProductPrice("2000000");
 
 
         //when
@@ -53,6 +53,7 @@ public class OrderTests {
 
         entityTransaction.begin();
         entityManager.persist(product);
+        System.out.println(product.getProductNum());
         try {
             entityTransaction.commit();
         } catch (Exception e) {
@@ -70,7 +71,10 @@ public class OrderTests {
     @Test
     @Order(2)
     void 제품_조회_테스트() {
-        Product findProduct1 = entityManager.find(Product.class,1);
+
+
+        Product findProduct1 = entityManager.find(Product.class,0);
+        System.out.println(findProduct1);
         System.out.println(findProduct1);
         Assertions.assertNotNull(findProduct1);
     }
@@ -83,10 +87,16 @@ public class OrderTests {
         order.setOrderDate(new Date());
 
         entityManager.persist(order);
-        Product findProduct1 = entityManager.find(Product.class,1);
+        System.out.println(order.getOrderNum());
+        Product findProduct1 = entityManager.find(Product.class,0);
         OrderMapping orderMapping = new OrderMapping();
-        orderMapping.setOrderPk(new OrderPk(order.getOrderNum(),findProduct1.getProductNum()));
 
+
+        EntityTransaction  entityTransaction = entityManager.getTransaction();
+        System.out.println(order.getOrderNum());
+        entityTransaction.begin();
+        entityTransaction.commit();
+        orderMapping.setOrderPk(new OrderPk(order.getOrderNum(),findProduct1.getProductNum()));
         entityManager.persist(orderMapping);
 
         Assertions.assertEquals(order.getOrderNum(),orderMapping.getOrderPk().getOrderNum());
@@ -99,10 +109,12 @@ public class OrderTests {
     void 주문_삭제_테스트() {
         //given
         com.jihwan.study.Order order = entityManager.find(com.jihwan.study.Order.class,1);
+        System.out.println("ddd"+order);
         //when
         EntityTransaction entityTransaction = entityManager.getTransaction();
-        entityTransaction.begin();
         entityManager.remove(order);
+        entityTransaction.begin();
+
         entityTransaction.commit();
 
         //then

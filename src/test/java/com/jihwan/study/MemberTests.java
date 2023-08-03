@@ -59,6 +59,7 @@ public class MemberTests {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         entityManager.persist(member);
+        System.out.println(member.getMemberNo());
 
         try {
             entityTransaction.commit();

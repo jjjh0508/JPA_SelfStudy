@@ -20,7 +20,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productNum, String productName, int productPrice) {
+    public Product(int productNum, String productName, String productPrice) {
         this.productNum = productNum;
         this.productName = productName;
         this.setProductPrice(productPrice);
@@ -48,7 +48,7 @@ public class Product {
     }
 
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(String  productPrice) {
 
         this.productPrice = productPrice+"원";
     }
