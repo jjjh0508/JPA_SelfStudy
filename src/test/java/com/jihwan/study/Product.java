@@ -14,8 +14,12 @@ public class Product {
 
     @Column(name = "product_name" ,unique = true)
     private String productName;
+
+
     @Column(name = "product_price")
     private String productPrice;
+
+
 
     public Product() {
     }

@@ -55,8 +55,8 @@ public class Member {
     private Date deleteDate;
 
 
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders; // 회원을 참조한 주문 조회
+
+//    private List<Order> orders; // 회원을 참조한 주문 조회
 
 
 

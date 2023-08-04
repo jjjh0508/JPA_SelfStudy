@@ -1,6 +1,7 @@
 package com.jihwan.study;
 
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,7 +9,9 @@ import java.util.Objects;
 
 @Entity(name = "study_order_mapping")
 @Table(name = "stu_order_mapping")
+
 public class OrderMapping {
+
 
     @EmbeddedId
     private OrderPk orderPk;

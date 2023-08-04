@@ -2,17 +2,18 @@ package com.jihwan.study;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class OrderPk  implements Serializable {
+public class OrderPk implements Serializable {
 
-    @Column(name = "order_num")
+    @JoinColumn(name = "order_num")
     private int orderNum;
 
-    @Column(name = "product_num")
+    @JoinColumn(name = "product_num")
     private int productNum;
 
     public OrderPk() {

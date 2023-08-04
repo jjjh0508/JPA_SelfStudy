@@ -2,6 +2,8 @@ package com.jihwan.study;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity(name = "study_order")
 @Table(name = "stu_order")
 public class Order {
@@ -27,9 +29,13 @@ public class Order {
     private Date deleteDate;
 
     //연관관계를 맞는건 라이프사이클을 묶는다
-    @JoinColumn(name = "memberNo") //주문 정보에 회원 정보를 가져올 수있다
-    @ManyToOne   // 주문은 하나의 멤버를 참조
-    private Member memberNo;
+    @Column(name = "memberNo") //주문 정보에 회원 정보를 가져올 수있다
+//    @ManyToOne   // 주문은 하나의 멤버를 참조
+    private int memberNo;
+
+
+    @OneToMany
+    private List<OrderMapping> orderPk;
 
     public Order() {
     }
