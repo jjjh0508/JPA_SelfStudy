@@ -35,7 +35,7 @@ public class Order {
 
 
     @OneToMany
-    private List<OrderMapping> orderPk;
+    private List<OrderMapping> orderMappings;
 
     public Order() {
     }
