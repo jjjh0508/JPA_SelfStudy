@@ -26,6 +26,10 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deleteDate;
 
+    //연관관계를 맞는건 라이프사이클을 묶는다
+    @JoinColumn(name = "memberNo") //주문 정보에 회원 정보를 가져올 수있다
+    @ManyToOne   // 주문은 하나의 멤버를 참조
+    private Member memberNo;
 
     public Order() {
     }

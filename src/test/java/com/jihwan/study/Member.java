@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "study_member")
 @Table(name = "stu_member")
@@ -52,6 +53,11 @@ public class Member {
     @Column(name = "delteDate")
     @Temporal(TemporalType.DATE)
     private Date deleteDate;
+
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders; // 회원을 참조한 주문 조회
+
 
 
     public Member() {
