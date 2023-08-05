@@ -10,10 +10,10 @@ import java.util.Objects;
 @Embeddable
 public class OrderPk implements Serializable {
 
-    @JoinColumn(name = "order_num")
+    @Column(name = "order_num")
     private int orderNum;
 
-    @JoinColumn(name = "product_num")
+    @Column(name = "product_num")
     private int productNum;
 
     public OrderPk() {

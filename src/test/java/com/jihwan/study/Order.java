@@ -34,19 +34,31 @@ public class Order {
     private int memberNo;
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    /*
+     * CascadeType.ALL: 모든 Cascade를 적용
+     * CascadeType.PERSIST: 엔티티를 영속화할 때, 연관된 엔티티도 함께 유지
+     * CascadeType.MERGE: 엔티티 상태를 병합(Merge)할 때, 연관된 엔티티도 모두 병합
+     * CascadeType.REMOVE: 엔티티를 제거할 때, 연관된 엔티티도 모두 제거
+     * CascadeType.DETACH: 부모 엔티티를 detach() 수행하면, 연관 엔티티도 detach()상태가 되어 변경 사항 반영 X
+     * CascadeType.REFRESH: 상위 엔티티를 새로고침(Refresh)할 때, 연관된 엔티티도 모두 새로고침
+     *
+     * */
     private List<OrderMapping> orderMappings;
 
     public Order() {
     }
 
-    public Order(int orderNum, String status, Date orderDate, Date modifyDate, Date deleteDate) {
+    public Order(int orderNum, String status, Date orderDate, Date modifyDate, Date deleteDate, int memberNo, List<OrderMapping> orderMappings) {
         this.orderNum = orderNum;
         this.status = status;
         this.orderDate = orderDate;
         this.modifyDate = modifyDate;
         this.deleteDate = deleteDate;
+        this.memberNo = memberNo;
+        this.orderMappings = orderMappings;
     }
+
 
     public int getOrderNum() {
         return orderNum;
@@ -88,6 +100,22 @@ public class Order {
         this.deleteDate = deleteDate;
     }
 
+    public int getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(int memberNo) {
+        this.memberNo = memberNo;
+    }
+
+    public List<OrderMapping> getOrderMappings() {
+        return orderMappings;
+    }
+
+    public void setOrderMappings(List<OrderMapping> orderMappings) {
+        this.orderMappings = orderMappings;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -96,6 +124,8 @@ public class Order {
                 ", orderDate=" + orderDate +
                 ", modifyDate=" + modifyDate +
                 ", deleteDate=" + deleteDate +
+                ", memberNo=" + memberNo +
+                ", orderMappings=" + orderMappings +
                 '}';
     }
 }
