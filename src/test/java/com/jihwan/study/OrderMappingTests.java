@@ -79,12 +79,14 @@ public class OrderMappingTests {
         product.setProductName("갤럭시");
         product.setProductPrice("100000");
 
-        entityManager.persist(product);
+
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
+        entityManager.persist(product);
         entityTransaction.commit();
 
         Product findProduct1 = entityManager.find(Product.class, product.getProductNum());
+        System.out.println(findProduct1);
         Assertions.assertEquals(product.getProductNum(),findProduct1.getProductNum());
 
 
@@ -103,7 +105,8 @@ public class OrderMappingTests {
         //제품에 회원번호
         order.setMemberNo(findMember.getMemberNo());
 
-
+        System.out.println(order.getOrderNum());
+        System.out.println(findProduct.getProductNum());
         //주문리스트 추가
         OrderMapping orderMapping = new OrderMapping();
         orderMapping.setOrderPk(new OrderPk(order.getOrderNum(),findProduct.getProductNum()));
@@ -122,7 +125,7 @@ public class OrderMappingTests {
         entityManager.persist(order);
         entityTransaction.commit();
 
-        System.out.println(order);
+
         com.jihwan.study.Order findOrder1 = entityManager.find(com.jihwan.study.Order.class,order.getOrderNum());
         Assertions.assertEquals(order,findOrder1);
 

@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class Product {
 
 
+
     @Column(name = "product_num")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productNum;
 
     @Column(name = "product_name" ,unique = true)
@@ -31,6 +31,7 @@ public class Product {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getProductNum() {
         return productNum;
     }
