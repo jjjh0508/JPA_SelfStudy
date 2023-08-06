@@ -32,6 +32,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Access(AccessType.PROPERTY) 일 경우 GeneratedValue 설정을 겟터에 줘야 작동하는거 같다ㅎ
     public int getProductNum() {
         return productNum;
     }
