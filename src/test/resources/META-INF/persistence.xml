@@ -8,6 +8,7 @@
         <class>com.jihwan.student.Grade</class>
         <class>com.jihwan.student.Lectures</class>
         <class>com.jihwan.student.Student</class>
+
         <properties>
             <!--DB Connection의 관련된 설정-->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

@@ -1,6 +1,7 @@
 package com.jihwan.student;
 
 import javax.persistence.*;
+import java.util.List;
 
 //학생
 @Entity(name = "stu_student")
@@ -12,24 +13,30 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentNum;
 
-    @Column(name = "name" , nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "address",nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Grade> grades;
 
     public Student() {
     }
 
 
-    public Student(int studentNum, String name, String phone, String address) {
+    public Student(int studentNum, String name, String phone, String address, List<Grade> grades) {
         this.studentNum = studentNum;
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.grades = grades;
     }
 
     public Student studentNum(int studentNum) {
@@ -54,7 +61,7 @@ public class Student {
     }
 
     public Student builder() {
-        return new Student( studentNum,  name,  phone,  address);
+        return new Student(studentNum, name, phone, address,grades);
     }
 
 
@@ -90,6 +97,14 @@ public class Student {
         this.address = address;
     }
 
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -97,6 +112,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", grades=" + grades +
                 '}';
     }
 }

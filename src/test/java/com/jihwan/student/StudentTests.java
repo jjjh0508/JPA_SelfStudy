@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -75,9 +77,12 @@ public class StudentTests {
         Grade grade = new Grade();
         Student student = entityManager.find(Student.class,1);
         Lectures lectures = entityManager.find(Lectures.class,1);
+
+        System.out.println(student);
+        System.out.println(lectures);
         grade.gradePk(new GradePk(student.getStudentNum(),lectures.getLectuNum()));
         grade.semester(1).lectuScore(100).builder();
-
+        System.out.println(grade);
         EntityTransaction entityTransaction  = entityManager.getTransaction();
         entityTransaction.begin();
         entityManager.persist(grade);
@@ -87,4 +92,11 @@ public class StudentTests {
         Assertions.assertEquals(grade,findGrade1);
     }
 
+
+    @Test
+    @Order(4)
+    void 학생_학점테스트() {
+        Student student = entityManager.find(Student.class,1);
+        System.out.println(student);
+    }
 }
